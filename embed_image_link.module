@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * Hooks and other functions for Embed image link module.
+ */
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function embed_image_link_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'media_source_info_alter') {
+
+    // Move embed_image_link_media_source_info_alter() to the end of the list
+    // so that it runs after lightning_media_image_media_source_info_alter().
+    $group = $implementations['embed_image_link'];
+    unset($implementations['embed_image_link']);
+    $implementations['embed_image_link'] = $group;
+  }
+}
+
+/**
+ * Implements hook_media_source_info_alter().
+ */
+function embed_image_link_media_source_info_alter(array &$sources) {
+  // When a media item that uses the Image plugin is embedded in a text editor,
+  // prefer the embed_image_link_image display plugin. This overrides the
+  // preferred plugin set in lightning media.
+  // @see lightning_media_image_media_source_info_alter()
+  $sources['image']['entity_embed_display'] = 'embed_image_link_image';
+}

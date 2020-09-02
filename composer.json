@@ -1,0 +1,24 @@
+{
+    "name": "drupal/embed_image_link",
+    "type": "drupal-module",
+    "authors": [
+        {
+            "name": "Edward Wu",
+            "email": "edward.wu@acquia.com"
+        }
+    ],
+    "require": {
+        "drupal/entity_embed": "^1.0",
+        "drupal/lightning_media": "3.* || 4.*"
+    },
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        },
+        "assets": {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    }
+}
